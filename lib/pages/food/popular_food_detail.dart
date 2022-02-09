@@ -4,6 +4,7 @@ import 'package:food/utils/dimensions.dart';
 import 'package:food/widgets/app_column.dart';
 import 'package:food/widgets/app_icon.dart';
 import 'package:food/widgets/big_text.dart';
+import 'package:food/widgets/expandable_text_widget.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   const PopularFoodDetail({Key? key}) : super(key: key);
@@ -64,14 +65,29 @@ class PopularFoodDetail extends StatelessWidget {
                     SizedBox(
                       height: Dimensions.height20,
                     ),
-                    BigText(text: "Introduce")
+                    BigText(text: "Introduce"),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    const Expanded(
+                        child: SingleChildScrollView(
+                      child: ExpandableTextWidget(
+                          text:
+                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                              " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+                              " when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                              " It has survived not only five centuries, but also the leap into electronic typesetting,"
+                              " remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset"
+                              " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software"
+                              " like Aldus PageMaker including versions of Lorem Ipsum. "),
+                    ))
                   ],
                 ),
               ))
         ],
       ),
       bottomNavigationBar: Container(
-          height: 120,
+          height: Dimensions.bottomHeightBar,
           padding: EdgeInsets.only(
               top: Dimensions.height30,
               bottom: Dimensions.height30,
@@ -113,10 +129,18 @@ class PopularFoodDetail extends StatelessWidget {
                 ),
               ),
               Container(
+                padding: EdgeInsets.only(
+                    top: Dimensions.height20,
+                    bottom: Dimensions.height20,
+                    left: Dimensions.width20,
+                    right: Dimensions.width20),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor),
-                child: BigText(text: "\$10 | Add to cart"),
+                child: BigText(
+                  text: "\$10 | Add to cart",
+                  color: Colors.white,
+                ),
               )
             ],
           )),

@@ -1,25 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:food/controllers/recommended_product_controller.dart';
+import 'package:food/routes/route_handler.dart';
+import 'package:food/utils/app_constants.dart';
 import 'package:food/utils/colors.dart';
 import 'package:food/utils/dimensions.dart';
 import 'package:food/widgets/app_icon.dart';
 import 'package:food/widgets/big_text.dart';
 import 'package:food/widgets/expandable_text_widget.dart';
+import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+
+  RecommendedFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 80,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                  child: AppIcon(icon: Icons.clear),
+                ),
                 AppIcon(icon: Icons.shopping_cart_outlined)
               ],
             ),
@@ -28,7 +42,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 child: Container(
                   child: Center(
                     child: BigText(
-                      text: "Chinese Side",
+                      text: product.name!,
                       size: Dimensions.font26,
                     ),
                   ),
@@ -45,8 +59,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/image/food0.png",
+              background: Image.network(
+                AppConstants.BASE_URL + "/uploads/" + product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -58,57 +72,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(
                     left: Dimensions.width20, right: Dimensions.width20),
-                child: ExpandableTextWidget(
-                    text:
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                        " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-                        " when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                        " It has survived not only five centuries, but also the leap into electronic typesetting,"
-                        " remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset"
-                        " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software"
-                        " like Aldus PageMaker including versions of Lorem Ipsum. "
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                        " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-                        " when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                        " It has survived not only five centuries, but also the leap into electronic typesetting,"
-                        " remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset"
-                        " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software"
-                        " like Aldus PageMaker including versions of Lorem Ipsum. "
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                        " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-                        " when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                        " It has survived not only five centuries, but also the leap into electronic typesetting,"
-                        " remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset"
-                        " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software"
-                        " like Aldus PageMaker including versions of Lorem Ipsum. "
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                        " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-                        " when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                        " It has survived not only five centuries, but also the leap into electronic typesetting,"
-                        " remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset"
-                        " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software"
-                        " like Aldus PageMaker including versions of Lorem Ipsum. "
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                        " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-                        " when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                        " It has survived not only five centuries, but also the leap into electronic typesetting,"
-                        " remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset"
-                        " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software"
-                        " like Aldus PageMaker including versions of Lorem Ipsum. "
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                        " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-                        " when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                        " It has survived not only five centuries, but also the leap into electronic typesetting,"
-                        " remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset"
-                        " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software"
-                        " like Aldus PageMaker including versions of Lorem Ipsum. "
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                        " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-                        " when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                        " It has survived not only five centuries, but also the leap into electronic typesetting,"
-                        " remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset"
-                        " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software"
-                        " like Aldus PageMaker including versions of Lorem Ipsum. "),
+                child: ExpandableTextWidget(text: product.description!),
               ),
             ],
           ))
@@ -133,7 +97,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   iconSize: Dimensions.iconSize24,
                 ),
                 BigText(
-                  text: "\$12.88" + " X " + "0",
+                  text: "\$ ${product.price!}  X 0",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
@@ -187,7 +151,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                             BorderRadius.circular(Dimensions.radius20),
                         color: AppColors.mainColor),
                     child: BigText(
-                      text: "\$25 | Add to cart",
+                      text: "\$ ${product.price!} | Add to cart",
                       color: Colors.white,
                     ),
                   )

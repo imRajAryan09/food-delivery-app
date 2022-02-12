@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food/controllers/popular_product_controller.dart';
 import 'package:food/pages/home/main_home_page.dart';
+import 'package:food/utils/app_constants.dart';
 import 'package:food/utils/colors.dart';
 import 'package:food/utils/dimensions.dart';
 import 'package:food/widgets/app_column.dart';
@@ -9,10 +11,14 @@ import 'package:food/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -23,10 +29,12 @@ class PopularFoodDetail extends StatelessWidget {
               child: Container(
                 width: double.maxFinite,
                 height: Dimensions.popularFoodImgSize,
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/image/food0.png"))),
+                        image: NetworkImage(
+                          AppConstants.BASE_URL+"/uploads/"+product.img!
+                        ))),
               )),
           Positioned(
               top: Dimensions.height75,
@@ -36,8 +44,8 @@ class PopularFoodDetail extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: (){
-                      Get.to(()=>MainFoodPage());
+                    onTap: () {
+                      Get.to(() => MainFoodPage());
                     },
                     child: AppIcon(
                       icon: Icons.arrow_back_ios,
@@ -67,7 +75,7 @@ class PopularFoodDetail extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppColumn(
-                      text: "Chinese Side",
+                      text: product.name!,
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -76,17 +84,10 @@ class PopularFoodDetail extends StatelessWidget {
                     SizedBox(
                       height: Dimensions.height20,
                     ),
-                    const Expanded(
+                    Expanded(
                         child: SingleChildScrollView(
                       child: ExpandableTextWidget(
-                          text:
-                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                              " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-                              " when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                              " It has survived not only five centuries, but also the leap into electronic typesetting,"
-                              " remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset"
-                              " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software"
-                              " like Aldus PageMaker including versions of Lorem Ipsum. "),
+                          text: product.description!),
                     ))
                   ],
                 ),
@@ -145,7 +146,7 @@ class PopularFoodDetail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor),
                 child: BigText(
-                  text: "\$10 | Add to cart",
+                  text: "\$ ${product.price!} | Add to cart",
                   color: Colors.white,
                 ),
               )

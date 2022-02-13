@@ -31,9 +31,7 @@ class PopularProductController extends GetxController {
     if (isIncrement) {
       _quantity = checkQuantity(_quantity + 1);
     } else {
-      if (_quantity >= 1) {
-        _quantity = checkQuantity(_quantity - 1);
-      }
+      _quantity = checkQuantity(_quantity - 1);
     }
     update();
   }
@@ -65,12 +63,8 @@ class PopularProductController extends GetxController {
   }
 
   void addItem(ProductModel product) {
-    if (_quantity > 0) {
-      _cart.addItem(product, _quantity);
-      _quantity = 0;
-    } else {
-      Get.snackbar("Item Count", "You should at least add an item in the cart",
-          backgroundColor: AppColors.mainColor, colorText: Colors.white);
-    }
+    _cart.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(product);
   }
 }

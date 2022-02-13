@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:food/data/repository/cart_repo.dart';
 import 'package:food/models/products_model.dart';
 import 'package:get/get.dart';
 import '../models/cart_model.dart';
+import '../utils/colors.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
@@ -23,17 +25,23 @@ class CartController extends GetxController {
                 time: DateTime.now().toString(),
               ));
     } else {
-      _items.putIfAbsent(
-          product.id!,
-          () => CartModel(
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                img: product.img,
-                quantity: quantity,
-                isExist: true,
-                time: DateTime.now().toString(),
-              ));
+      if (quantity > 0) {
+        _items.putIfAbsent(
+            product.id!,
+            () => CartModel(
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  img: product.img,
+                  quantity: quantity,
+                  isExist: true,
+                  time: DateTime.now().toString(),
+                ));
+      } else {
+        Get.snackbar(
+            "Item Count", "You should at least add an item in the cart",
+            backgroundColor: AppColors.mainColor, colorText: Colors.white);
+      }
     }
   }
 

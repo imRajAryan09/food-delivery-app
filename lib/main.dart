@@ -27,8 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: const CartPage(),
-      // initialRoute: RouteHelper.initial,
-      // getPages: RouteHelper.routes,
+      
     );
   }
 }

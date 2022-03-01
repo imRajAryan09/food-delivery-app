@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food/controllers/cart_conroller.dart';
+import 'package:food/controllers/cart_controller.dart';
 import 'package:food/data/repository/popular_product_repo.dart';
 import 'package:food/models/cart_model.dart';
 import 'package:food/models/products_model.dart';

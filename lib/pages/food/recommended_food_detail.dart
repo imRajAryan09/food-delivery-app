@@ -9,7 +9,7 @@ import 'package:food/widgets/app_icon.dart';
 import 'package:food/widgets/big_text.dart';
 import 'package:food/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
-import '../../controllers/cart_conroller.dart';
+import '../../controllers/cart_controller.dart';
 import '../../controllers/popular_product_controller.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {

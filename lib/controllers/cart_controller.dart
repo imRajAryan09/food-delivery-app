@@ -8,35 +8,40 @@ import '../utils/colors.dart';
 class CartController extends GetxController {
   final CartRepo cartRepo;
   CartController({required this.cartRepo});
-  Map<int, CartModel> _items = {};
+  final Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
 
   void addItem(ProductModel product, int quantity) {
+    // print("length of the cart is "+_items.length.toString());
     if (_items.containsKey(product.id!)) {
-      _items.update(
-          product.id!,
-          (value) => CartModel(
-                id: value.id,
-                name: value.name,
-                price: value.price,
-                img: value.img,
-                quantity: value.quantity! + quantity,
-                isExist: true,
-                time: DateTime.now().toString(),
-              ));
+      _items.update(product.id!, (value) {
+        return CartModel(
+          id: value.id,
+          name: value.name,
+          price: value.price,
+          img: value.img,
+          quantity: value.quantity! + quantity,
+          isExist: true,
+          time: DateTime.now().toString(),
+        );
+      });
     } else {
       if (quantity > 0) {
-        _items.putIfAbsent(
-            product.id!,
-            () => CartModel(
-                  id: product.id,
-                  name: product.name,
-                  price: product.price,
-                  img: product.img,
-                  quantity: quantity,
-                  isExist: true,
-                  time: DateTime.now().toString(),
-                ));
+        _items.putIfAbsent(product.id!, () {
+          print("adding item to cart id " +
+              product.id!.toString() +
+              " quantity " +
+              quantity.toString());
+          return CartModel(
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            img: product.img,
+            quantity: quantity,
+            isExist: true,
+            time: DateTime.now().toString(),
+          );
+        });
       } else {
         Get.snackbar(
             "Item Count", "You should at least add an item in the cart",

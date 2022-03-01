@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food/controllers/cart_conroller.dart';
 import 'package:food/controllers/popular_product_controller.dart';
+import 'package:food/pages/cart/cart_page.dart';
 import 'package:food/pages/home/main_home_page.dart';
 import 'package:food/utils/app_constants.dart';
 import 'package:food/utils/colors.dart';
@@ -47,15 +48,48 @@ class PopularFoodDetail extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => MainFoodPage());
+                        Get.to(() => const MainFoodPage());
                       },
                       child: AppIcon(
                         icon: Icons.arrow_back_ios,
                       ),
                     ),
-                    AppIcon(
-                      icon: Icons.shopping_cart_outlined,
-                    ),
+                    GetBuilder<PopularProductController>(builder: (controller) {
+                      return Stack(
+                        children: [
+                          AppIcon(
+                            icon: Icons.shopping_cart_outlined,
+                          ),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: GestureDetector(
+                                    onTap:(){
+                                      Get.to(()=>CartPage());
+                                    },
+                                    child: AppIcon(
+                                      icon: Icons.circle,
+                                      size: 20,
+                                      iconColor: Colors.transparent,
+                                      backgroundColor: AppColors.mainColor,
+                                    ),
+                                  ))
+                              : Container(),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                              right: 5,
+                              top: 3,
+                              child: BigText(
+                                text:  Get.find<PopularProductController>().totalItems.toString(),
+                                size: 12,
+                                color: Colors.white,
+                              ))
+                              : Container(),
+
+                        ],
+                      );
+                    })
                   ],
                 )),
             Positioned(

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food/controllers/popular_product_controller.dart';
 import 'package:food/controllers/recommended_product_controller.dart';
 import 'package:food/pages/cart/cart_page.dart';
-import 'package:food/pages/food/recommended_food_detail.dart';
-import 'package:food/pages/home/food_page_body.dart';
 import 'package:food/pages/home/main_home_page.dart';
 import 'package:food/routes/route_handler.dart';
 import 'package:get/get.dart';

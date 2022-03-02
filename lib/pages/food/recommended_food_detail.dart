@@ -12,8 +12,10 @@ import '../../controllers/cart_controller.dart';
 import '../../controllers/popular_product_controller.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  int pageId;
-  RecommendedFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  final int pageId;
+  final String page;
+  RecommendedFoodDetail({Key? key, required this.pageId, required this.page})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,11 @@ class RecommendedFoodDetail extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getInitial());
+                      if (page == "cartpage") {
+                        Get.toNamed(RouteHelper.getCartPage());
+                      } else {
+                        Get.toNamed(RouteHelper.getInitial());
+                      }
                     },
                     child: AppIcon(icon: Icons.clear),
                   ),

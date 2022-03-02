@@ -14,6 +14,7 @@ dependencies:
   dots_indicator: ^2.0.0
   get: ^4.1.4
   cupertino_icons: ^1.0.2
+  persistent_bottom_nav_bar: ^4.0.2
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,8 @@
 import 'package:food/pages/food/popular_food_detail.dart';
 import 'package:food/pages/food/recommended_food_detail.dart';
-import 'package:food/pages/home/main_home_page.dart';
 import 'package:get/get.dart';
 import '../pages/cart/cart_page.dart';
+import '../pages/home/home_page.dart';
 
 class RouteHelper {
   static const String initial = "/";
@@ -21,7 +21,7 @@ class RouteHelper {
     GetPage(
         name: "/",
         page: () {
-          return MainFoodPage();
+          return HomePage();
         }),
     GetPage(
         name: popularFood,

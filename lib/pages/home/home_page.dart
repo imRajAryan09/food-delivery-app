@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
     ];
   }
 
-  @override
+  /*@override
   Widget build(BuildContext context) {
     return Scaffold(
         body: pages[_selectedIndex],
@@ -115,8 +115,8 @@ class _HomePageState extends State<HomePage> {
                 label: "Home",
               ),
             ]));
-  }
-  /*@override
+  }*/
+  @override
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
@@ -152,5 +152,5 @@ class _HomePageState extends State<HomePage> {
           NavBarStyle.style12
       , // Choose the nav bar style with this property.
     );
-  }*/
+  }
 }

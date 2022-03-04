@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
     ];
   }
 
-  /*@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: pages[_selectedIndex],
@@ -115,8 +115,8 @@ class _HomePageState extends State<HomePage> {
                 label: "Home",
               ),
             ]));
-  }*/
-  @override
+  }
+  /*@override
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset:
           true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-      stateManagement: true, // Default is true.
+      stateManagement: true, // Default is true.z
       hideNavigationBarWhenKeyboardShows:
           true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
       decoration: NavBarDecoration(
@@ -152,5 +152,5 @@ class _HomePageState extends State<HomePage> {
           NavBarStyle.style12
       , // Choose the nav bar style with this property.
     );
-  }
+  }*/
 }

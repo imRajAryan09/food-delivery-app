@@ -41,4 +41,7 @@ class Dimensions {
 
   // bottom height
   static double bottomHeightBar = screenHeight / 6.509167;
+
+  // Spash Screen Image
+  static double splashImg = screenHeight /3.1244;
 }

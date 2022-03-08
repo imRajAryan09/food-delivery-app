@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   late PersistentTabController _controller;
 
   List pages = [
-    MainFoodPage(),
+     MainFoodPage(),
     Container(
       child: Center(child: Text("Next Page")),
     ),
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     _controller = PersistentTabController(initialIndex: 0);
   }
 
-  List<Widget> _buildScreens() {
+  /*List<Widget> _buildScreens() {
     return [
       MainFoodPage(),
       Container(
@@ -53,9 +53,9 @@ class _HomePageState extends State<HomePage> {
         child: Center(child: Text("Next Next Next Page")),
       ),
     ];
-  }
+  }*/
 
-  List<PersistentBottomNavBarItem> _navBarsItems() {
+ /* List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
             unselectedFontSize: 0.0,
             currentIndex: _selectedIndex,
             onTap: onTapNav,
-            items: [
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined),
                 label: "Home",

@@ -4,6 +4,7 @@ import 'package:food/data/repository/popular_product_repo.dart';
 import 'package:food/models/cart_model.dart';
 import 'package:food/models/products_model.dart';
 import 'package:food/utils/colors.dart';
+import 'package:food/utils/dimensions.dart';
 import 'package:get/get.dart';
 
 class PopularProductController extends GetxController {
